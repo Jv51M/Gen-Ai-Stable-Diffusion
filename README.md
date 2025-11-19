@@ -32,16 +32,14 @@ This is a Streamlit web application that uses Hugging Face's Diffusers library t
 
 Make sure you have Python 3.8+ installed, then create and activate a virtual environment:
 
-bash
-
-`python -m venv .env source .env/bin/activate  # On Windows: .env\Scripts\activate`
-
+```bash
+python -m venv .env source .env/bin/activate  # On Windows: .env\Scripts\activate`
+```
 Install required libraries:
 
-bash
-
+```bash
 `pip install torch streamlit diffusers Pillow transformers accelerate`
-
+```
 The `diffusers` package requires PyTorch; install the version matching your hardware and CUDA setup from the [official PyTorch site](https://pytorch.org/get-started/locally/).
 
 ---
@@ -50,10 +48,9 @@ The `diffusers` package requires PyTorch; install the version matching your hard
 
 Run the Streamlit app:
 
-bash
-
+```bash
 `streamlit run app.py`
-
+```
 - On first load, you will see introductory image generation controls.
 
 - Click **Continue** to access the full model parameter sidebar and prompt input area.
