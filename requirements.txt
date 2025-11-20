@@ -1,0 +1,6 @@
+torch
+streamlit
+diffusers
+Pillow
+transformers
+accelerate
