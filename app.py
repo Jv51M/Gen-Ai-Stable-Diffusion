@@ -77,16 +77,17 @@ else:
         comp_device= st.segmented_control('Select Device',['cpu','cuda'],default='cpu')
 
     # Unloading the previous image data and from the session_state
-    for message in st.session_state.messages:
-        with st.chat_message('User'):
-            st.write(message['prompt'])
-        with st.chat_message('Assistant'):
-            st.image(message['image'])
-            st.button(label='download',
-                      on_click=save_img,
-                      args=(message['image'], message['prompt']),
-                      key='download_button' + str(st.session_state.key))
-    
+    def show_msgs():
+        for message in st.session_state.messages:
+            with st.chat_message('User'):
+                st.write(message['prompt'])
+            with st.chat_message('Assistant'):
+                st.image(message['image'])
+                st.button(label='download',
+                          on_click=save_img,
+                          args=(message['image'], message['prompt']),
+                          key='download_button' + str(st.session_state.key))
+    show_msgs()
     # structuring a chat format to display the prompt and the image generated
     prompt= st.chat_input()
     if prompt:
@@ -94,6 +95,7 @@ else:
                 try:
                     image=create_image(prompt,inference,neg_prompt,optional_prompt,guide,comp_device)
                     st.session_state.messages.append({"prompt": prompt, "image": image})
+                    show_msgs()
                 except Exception as e:
                     st.error(f'error generating image{e}')
 
